@@ -6,8 +6,8 @@
 //  Copyright © 2016 Andrey. All rights reserved.
 //
 
-#import "SAPArrayViewController.h"
+#import "SAPViewController.h"
 
-@interface SAPActivitiesViewController : SAPArrayViewController
+@interface SAPActivitiesViewController : SAPViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
