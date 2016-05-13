@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface SAPActivity : NSManagedObject
-@property (nullable, nonatomic, retain) NSString *note;
-@property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSNumber *type;
+#warning temporary testing code
+@interface SAPActivity :NSObject//: NSManagedObject
+@property (nonatomic, strong) NSString  *note;
+@property (nonatomic, strong) NSDate    *date;
+@property (nonatomic, strong) NSNumber  *type;
 
 @end
