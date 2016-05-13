@@ -14,6 +14,7 @@
 #import "SAPActivityCell.h"
 #import "SAPActivitiesview.h"
 #import "SAPTableViewCell.h"
+#import "SAPActivityViewController.h"
 
 #import "UITableView+SAPExtensions.h"
 #import "UIAlertController+SAPExtensions.h"
@@ -39,6 +40,8 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (Class)cellClass;
 - (void)customizeRightBarButton;
+- (void)onAddTask;
+- (void)showActivityViewControllerWithModel:(SAPActivity *)model;
 
 - (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath;
 - (SAPArrayModel *)modelForSection:(NSInteger)section;
@@ -194,9 +197,13 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (void)onAddTask {
-//    SAPActivityViewController *controller = [SAPActivityViewController new];
-//    controller.model = [SAPActivity new];
-//    [self.navigationController pushViewController:controller animated:NO];
+    [self showActivityViewControllerWithModel:[SAPActivity new]];
+}
+
+- (void)showActivityViewControllerWithModel:(SAPActivity *)model {
+    SAPActivityViewController *controller = [SAPActivityViewController new];
+    controller.model = model;
+    [self.navigationController pushViewController:controller animated:NO];
 }
 
 - (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath {
@@ -229,7 +236,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return [UIAlertAction actionWithTitle:kSAPEditActionTitle
                                     style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action) {
-                                      //edit code
+                                      [self showActivityViewControllerWithModel:activity];
                                   }];
 }
 
@@ -244,10 +251,12 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (UIAlertAction *)deleteActionWithActivity:(SAPActivity *)activity {
+    SAPActivities *model = self.model;
     return [UIAlertAction actionWithTitle:kSAPDeleteActionTitle
                                     style:UIAlertActionStyleDestructive
                                   handler:^(UIAlertAction *action) {
-                                      //edit code
+                                      [model removeObject:activity];
+                                      [model notifyObserversWithSelector:@selector(modelDidFinishLoading:) withObject:self.model];
                                   }];
 }
 
