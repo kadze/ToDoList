@@ -10,6 +10,12 @@
 #import "SAPActivitiesViewController.h"
 
 #import "SAPActivities.h"
+#import "SAPActivityCell.h"
+#import "SAPTableViewCell.h"
+
+#import "UITableView+SAPExtensions.h"
+
+#import "SAPModelView.h"
 
 static NSInteger const kSAPSectionsCount = 3;
 static NSString * const kSAPSection1Header = @"Outdated";
@@ -17,6 +23,8 @@ static NSString * const kSAPSection2Header = @"Actual";
 static NSString * const kSAPSection3Header = @"Completed";
 
 @interface SAPActivitiesViewController ()
+
+- (Class)cellClass;
 
 @end
 
@@ -47,7 +55,31 @@ static NSString * const kSAPSection3Header = @"Completed";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    SAPTableViewCell<SAPModelView> *cell = [tableView cellWithClass:[self cellClass]];
+    NSInteger section = indexPath.section;
+    SAPArrayModel *activities = nil;
+    SAPActivities *model = self.model;
+    switch (section) {
+        case 0:
+            activities = model.outdated;
+            break;
+            
+        case 1:
+            activities = model.actual;
+            break;
+            
+        case 2:
+            activities = model.completed;
+            break;
+            
+        default:
+            activities = nil;
+            break;
+    }
+    
+    cell.model = activities[indexPath.row];
+    
+    return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -74,5 +106,11 @@ static NSString * const kSAPSection3Header = @"Completed";
     }
 }
 
+#pragma mark -
+#pragma mark Private
+
+- (Class)cellClass {
+    return [SAPActivityCell class];
+}
 
 @end
