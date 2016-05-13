@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, SAPActivityType) {
 //@interface SAPActivity : NSManagedObject
 @interface SAPActivity : NSObject
 @property (nonatomic, assign) SAPActivityType   type;
+@property (nonatomic, strong) NSNumber          *completed;
 @property (nonatomic, strong) NSString          *note;
 @property (nonatomic, strong) NSDate            *date;
 

@@ -13,9 +13,10 @@
 @implementation SAPActivity
 
 #warning temporaty comment for testing
+//@dynamic type;
+//@dynamic completed;
 //@dynamic note;
 //@dynamic date;
-//@dynamic type;
 
 //- (void)setType:(SAPActivityType)type {
 //    [self setCustomValue:@(type) forKey:NSStringFromSelector(@selector(type))];
