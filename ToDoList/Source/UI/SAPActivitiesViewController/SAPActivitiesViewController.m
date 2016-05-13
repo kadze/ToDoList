@@ -101,11 +101,36 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    SAPUserDetailViewController *controller = [SAPUserDetailViewController new];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SAPArrayModel *activities = [self modelForSectionAtIndexPath:indexPath];
 //    controller.model = self.items[indexPath.row];
-//    [self.navigationController pushViewController:controller animated:YES];
-//}
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Choose action"
+                                                                        message:@"choose action, babe"
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"Edit"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           //edit code
+                                                       }];
+    
+    UIAlertAction *completeAction = [UIAlertAction actionWithTitle:@"Complete"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           //edit code
+                                                       }];
+    
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete"
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:^(UIAlertAction *action) {
+                                                           //edit code
+                                                       }];
+    
+    [controller addAction:editAction];
+    [controller addAction:completeAction];
+    [controller addAction:deleteAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
