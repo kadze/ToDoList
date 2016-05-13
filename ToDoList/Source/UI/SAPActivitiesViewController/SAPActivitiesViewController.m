@@ -34,6 +34,8 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (Class)cellClass;
 - (void)customizeRightBarButton;
+- (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath;
+- (SAPArrayModel *)modelForSection:(NSInteger)section;
 
 @end
 
@@ -97,52 +99,24 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 ////
 
 #pragma mark -
+#pragma mark UITableViewDelegate
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    SAPUserDetailViewController *controller = [SAPUserDetailViewController new];
+//    controller.model = self.items[indexPath.row];
+//    [self.navigationController pushViewController:controller animated:YES];
+//}
+
+#pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    SAPActivities *model = self.model;
-    switch (section) {
-        case 0:
-            return model.outdated.count;
-            break;
-        
-        case 1:
-            return model.actual.count;
-            break;
-            
-        case 2:
-            return model.completed.count;
-            break;
-            
-        default:
-            return 0;
-            break;
-    }
+    return [self modelForSection:section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SAPTableViewCell<SAPModelView> *cell = [tableView cellWithClass:[self cellClass]];
-    NSInteger section = indexPath.section;
-    SAPArrayModel *activities = nil;
-    SAPActivities *model = self.model;
-    switch (section) {
-        case 0:
-            activities = model.outdated;
-            break;
-            
-        case 1:
-            activities = model.actual;
-            break;
-            
-        case 2:
-            activities = model.completed;
-            break;
-            
-        default:
-            activities = nil;
-            break;
-    }
-    
+    SAPArrayModel *activities = [self modelForSectionAtIndexPath:indexPath];
     cell.model = activities[indexPath.row];
     
     return cell;
@@ -202,5 +176,30 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 //    [self.navigationController pushViewController:controller animated:NO];
 }
 
+- (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath {
+    return [self modelForSection:indexPath.section];
+}
 
+- (SAPArrayModel *)modelForSection:(NSInteger)section {
+    SAPActivities *model = self.model;
+    
+    switch (section) {
+        case 0:
+            return model.outdated;
+            break;
+            
+        case 1:
+            return model.actual;
+            break;
+            
+        case 2:
+            return model.completed;
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+   
 @end
