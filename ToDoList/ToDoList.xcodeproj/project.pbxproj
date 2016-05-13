@@ -69,10 +69,10 @@
 		550A6B291CE50B20001D298C /* SAPActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B281CE50B20001D298C /* SAPActivityView.m */; };
 		550A6B331CE520B4001D298C /* SAPActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B321CE520B4001D298C /* SAPActivities.m */; };
 		55EA685F1CE6687500642CC9 /* UIAlertController+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EA685E1CE6687500642CC9 /* UIAlertController+SAPExtensions.m */; };
+		55EA68681CE672F400642CC9 /* SAPActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EA68671CE672F400642CC9 /* SAPActivity.m */; };
 		55F19C2E1CE5B15100F54D2D /* SAPActivitiesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F19C2C1CE5B15100F54D2D /* SAPActivitiesView.m */; };
 		55F19C371CE5B1D400F54D2D /* SAPActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */; };
 		55F19C381CE5B1D400F54D2D /* SAPActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */; };
-		55F19C441CE5D0F000F54D2D /* SAPActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F19C431CE5D0F000F54D2D /* SAPActivity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,13 +211,13 @@
 		550A6B321CE520B4001D298C /* SAPActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivities.m; sourceTree = "<group>"; };
 		55EA685D1CE6687500642CC9 /* UIAlertController+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+SAPExtensions.h"; sourceTree = "<group>"; };
 		55EA685E1CE6687500642CC9 /* UIAlertController+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+SAPExtensions.m"; sourceTree = "<group>"; };
+		55EA68661CE672F400642CC9 /* SAPActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivity.h; sourceTree = "<group>"; };
+		55EA68671CE672F400642CC9 /* SAPActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivity.m; sourceTree = "<group>"; };
 		55F19C2B1CE5B15100F54D2D /* SAPActivitiesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivitiesView.h; sourceTree = "<group>"; };
 		55F19C2C1CE5B15100F54D2D /* SAPActivitiesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivitiesView.m; sourceTree = "<group>"; };
 		55F19C341CE5B1D400F54D2D /* SAPActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivityCell.h; sourceTree = "<group>"; };
 		55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivityCell.m; sourceTree = "<group>"; };
 		55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivityCell.xib; sourceTree = "<group>"; };
-		55F19C421CE5D0F000F54D2D /* SAPActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivity.h; sourceTree = "<group>"; };
-		55F19C431CE5D0F000F54D2D /* SAPActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -997,8 +997,8 @@
 		55F19C411CE5D0F000F54D2D /* SAPActivity */ = {
 			isa = PBXGroup;
 			children = (
-				55F19C421CE5D0F000F54D2D /* SAPActivity.h */,
-				55F19C431CE5D0F000F54D2D /* SAPActivity.m */,
+				55EA68661CE672F400642CC9 /* SAPActivity.h */,
+				55EA68671CE672F400642CC9 /* SAPActivity.m */,
 			);
 			path = SAPActivity;
 			sourceTree = "<group>";
@@ -1089,7 +1089,7 @@
 				55F19C2E1CE5B15100F54D2D /* SAPActivitiesView.m in Sources */,
 				550A6B021CE503A2001D298C /* SAPObjectCache.m in Sources */,
 				550A6AEA1CE503A2001D298C /* NSString+IOPRandomName.m in Sources */,
-				55F19C441CE5D0F000F54D2D /* SAPActivity.m in Sources */,
+				55EA68681CE672F400642CC9 /* SAPActivity.m in Sources */,
 				550A6A0C1CE50066001D298C /* AppDelegate.m in Sources */,
 				55F19C371CE5B1D400F54D2D /* SAPActivityCell.m in Sources */,
 				550A6B0E1CE503A2001D298C /* SAPSetters.m in Sources */,

@@ -85,22 +85,23 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     for (int counter = 0; counter < 10; counter++) {
         SAPActivity *activity = [SAPActivity new];
         activity.note = [NSString stringWithFormat:@"outdatedddddddddddddddddddddddddddd dddddddddddddddd %d", counter];
-        activity.date = [NSDate date];
-        [model addOutdated:activity];
+        activity.date = [NSDate dateWithTimeIntervalSinceNow:-86400];
+        [model addObject:activity];
     }
     
     for (int counter = 0; counter < 10; counter++) {
         SAPActivity *activity = [SAPActivity new];
         activity.note = [NSString stringWithFormat:@"actual %d", counter];
-        activity.date = [NSDate date];
-        [model addActual:activity];
+        activity.date = [NSDate dateWithTimeIntervalSinceNow:86400];
+        [model addObject:activity];
     }
     
     for (int counter = 0; counter < 10; counter++) {
         SAPActivity *activity = [SAPActivity new];
         activity.note = [NSString stringWithFormat:@"completed %d", counter];
         activity.date = [NSDate date];
-        [model addCompleted:activity];
+        activity.completed = @(1);
+        [model addObject:activity];
     }
     
     self.model = model;

@@ -8,35 +8,50 @@
 
 #import "SAPActivities.h"
 
+#import "SAPActivity.h"
+
 @implementation SAPActivities
 
-#pragma mark -
-#pragma mark Initializations and Deallocations
+@dynamic outdated, actual, completed;
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.outdated = [SAPArrayModel new];
-        self.actual = [SAPArrayModel new];
-        self.completed = [SAPArrayModel new];
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)outdated {
+    NSMutableArray *outdated = [NSMutableArray new];
+    NSDate *currentDate = [NSDate date];
+    for (SAPActivity *activity in self.objects) {
+        if (!activity.completed &&
+            [currentDate compare:activity.date] == NSOrderedDescending) {
+            [outdated addObject:activity];
+        }
     }
     
-    return self;
+    return [outdated copy];
 }
 
-#pragma mark -
-#pragma mark Public
-
-- (void)addOutdated:(SAPActivity *)activity {
-    [self.outdated addObject:activity];
+- (NSArray *)actual {
+    NSMutableArray *actual = [NSMutableArray new];
+    NSDate *currentDate = [NSDate date];
+    for (SAPActivity *activity in self.objects) {
+        if (!activity.completed &&
+            [currentDate compare:activity.date] != NSOrderedDescending) {
+            [actual addObject:activity];
+        }
+    }
+    
+    return [actual copy];
 }
 
-- (void)addActual:(SAPActivity *)activity {
-    [self.actual addObject:activity];
-}
-
-- (void)addCompleted:(SAPActivity *)activity {
-    [self.completed addObject:activity];
+- (NSArray *)completed {
+    NSMutableArray *completed = [NSMutableArray new];
+    for (SAPActivity *activity in self.objects) {
+        if (activity.completed) {
+            [completed addObject:activity];
+        }
+    }
+    
+    return [completed copy];
 }
 
 @end
