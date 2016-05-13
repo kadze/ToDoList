@@ -10,8 +10,6 @@
 
 #import "SAPModel.h"
 
-#import "UIAlertView+SAPExtensions.h"
-
 @interface SAPManagedObject ()
 @property (nonatomic, strong) SAPModel *model;
 

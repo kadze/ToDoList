@@ -9,7 +9,6 @@
 #import "SAPIdentifiableManagedObject.h"
 
 #import "SAPCoreDataController.h"
-#import "UIAlertView+SAPExtensions.h"
 
 @implementation SAPIdentifiableManagedObject
 
@@ -33,7 +32,7 @@
     NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
     
     if (!results) {
-        [UIAlertView showWithError:error];
+        return nil;
     }
     
     if (results.count == 0) {
@@ -42,7 +41,7 @@
         result.iD = iD;
         
         if (![managedObjectContext save:&error]) {
-            [UIAlertView showWithError:error];
+            return nil;
         }
         
     } else {

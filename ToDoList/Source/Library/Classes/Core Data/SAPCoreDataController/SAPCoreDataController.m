@@ -5,12 +5,11 @@
 //  Created by Andrey on 4/19/16.
 //  Copyright © 2016 SAP. All rights reserved.
 //
+#import <UIKit/UIApplication.h>
 
 #import "SAPCoreDataController.h"
 
 #import <CoreData/CoreData.h>
-
-#import "UIAlertView+SAPExtensions.h"
 
 #import "SAPDispatchOnceMacro.h"
 #import "SAPOwnershipMacro.h"
@@ -76,9 +75,7 @@ static NSString * const kSAPDatabaseFileName = @"Users.sqlite";
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kSAPMomResource withExtension:kSAPMomExtension];
     NSManagedObjectModel *mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     if (!mom) {
-        [UIAlertView showWithError:[NSError errorWithDomain:NSCocoaErrorDomain
-                                                      code:0
-                                                  userInfo:@{NSLocalizedDescriptionKey : kSAPErrorLocalizedDescription}]];
+        return;
     }
     
     NSPersistentStoreCoordinator *persistentStoreCoordinator =
@@ -104,7 +101,7 @@ static NSString * const kSAPDatabaseFileName = @"Users.sqlite";
                                                    options:nil
                                                      error:&error];
     if (error) {
-        [UIAlertView showWithError:error];
+        return;
     }
 }
 
@@ -136,7 +133,7 @@ static NSString * const kSAPDatabaseFileName = @"Users.sqlite";
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     if (error) {
-        [UIAlertView showWithError:error];
+        return;
     }
 }
 
