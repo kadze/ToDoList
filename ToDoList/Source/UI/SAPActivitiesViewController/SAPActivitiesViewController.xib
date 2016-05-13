@@ -26,6 +26,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="tableView" destination="PRe-3G-6fu" id="9m7-zh-ppN"/>
+            </connections>
         </view>
     </objects>
 </document>
