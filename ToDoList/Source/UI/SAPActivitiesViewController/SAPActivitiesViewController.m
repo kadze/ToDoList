@@ -5,7 +5,7 @@
 //  Created by Andrey on 5/12/16.
 //  Copyright © 2016 Andrey. All rights reserved.
 //
-#import <UIKit/UITableView.h>
+#import <UIKit/UIKit.h>
 
 #import "SAPActivitiesViewController.h"
 
@@ -32,10 +32,21 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (Class)cellClass;
 - (UITableView *)tableView;
+- (void)customizeRightBarButton;
 
 @end
 
 @implementation SAPActivitiesViewController
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    [self customizeRightBarButton];
+    
+    return self;
+}
 
 #warning temporary code for testing
 
@@ -165,6 +176,17 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (UITableView *)tableView {
     return self.mainView.tableView;
+}
+
+- (void)customizeRightBarButton {
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAddTask)];
+    self.navigationItem.rightBarButtonItem = addButton;
+}
+
+- (void)onAddTask {
+//    SAPActivityViewController *controller = [SAPActivityViewController new];
+//    controller.model = [SAPActivity new];
+//    [self.navigationController pushViewController:controller animated:NO];
 }
 
 
