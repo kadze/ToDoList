@@ -28,7 +28,6 @@
 		550A6AEA1CE503A2001D298C /* NSString+IOPRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A5B1CE503A1001D298C /* NSString+IOPRandomName.m */; };
 		550A6AEB1CE503A2001D298C /* NSString+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A5E1CE503A1001D298C /* NSString+SAPExtensions.m */; };
 		550A6AEC1CE503A2001D298C /* NSURL+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A611CE503A1001D298C /* NSURL+SAPExtensions.m */; };
-		550A6AED1CE503A2001D298C /* UIAlertView+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A641CE503A1001D298C /* UIAlertView+SAPExtensions.m */; };
 		550A6AEE1CE503A2001D298C /* UINib+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A671CE503A1001D298C /* UINib+SAPExtensions.m */; };
 		550A6AEF1CE503A2001D298C /* UITableView+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A6A1CE503A1001D298C /* UITableView+SAPExtensions.m */; };
 		550A6AF01CE503A2001D298C /* UIWindow+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A6D1CE503A1001D298C /* UIWindow+SAPExtensions.m */; };
@@ -120,8 +119,6 @@
 		550A6A5E1CE503A1001D298C /* NSString+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SAPExtensions.m"; sourceTree = "<group>"; };
 		550A6A601CE503A1001D298C /* NSURL+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SAPExtensions.h"; sourceTree = "<group>"; };
 		550A6A611CE503A1001D298C /* NSURL+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SAPExtensions.m"; sourceTree = "<group>"; };
-		550A6A631CE503A1001D298C /* UIAlertView+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+SAPExtensions.h"; sourceTree = "<group>"; };
-		550A6A641CE503A1001D298C /* UIAlertView+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+SAPExtensions.m"; sourceTree = "<group>"; };
 		550A6A661CE503A1001D298C /* UINib+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+SAPExtensions.h"; sourceTree = "<group>"; };
 		550A6A671CE503A1001D298C /* UINib+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+SAPExtensions.m"; sourceTree = "<group>"; };
 		550A6A691CE503A1001D298C /* UITableView+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SAPExtensions.h"; sourceTree = "<group>"; };
@@ -303,7 +300,6 @@
 				550A6A551CE503A1001D298C /* NSPathUtilities */,
 				550A6A581CE503A1001D298C /* NSString */,
 				550A6A5F1CE503A1001D298C /* NSURL */,
-				550A6A621CE503A1001D298C /* UIAlertView */,
 				550A6A651CE503A1001D298C /* UINib */,
 				550A6A681CE503A1001D298C /* UITableView */,
 				550A6A6B1CE503A1001D298C /* UIWindow */,
@@ -529,15 +525,6 @@
 				550A6A611CE503A1001D298C /* NSURL+SAPExtensions.m */,
 			);
 			path = NSURL;
-			sourceTree = "<group>";
-		};
-		550A6A621CE503A1001D298C /* UIAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				550A6A631CE503A1001D298C /* UIAlertView+SAPExtensions.h */,
-				550A6A641CE503A1001D298C /* UIAlertView+SAPExtensions.m */,
-			);
-			path = UIAlertView;
 			sourceTree = "<group>";
 		};
 		550A6A651CE503A1001D298C /* UINib */ = {
@@ -1090,7 +1077,6 @@
 				550A6B021CE503A2001D298C /* SAPObjectCache.m in Sources */,
 				550A6AEA1CE503A2001D298C /* NSString+IOPRandomName.m in Sources */,
 				55F19C441CE5D0F000F54D2D /* SAPActivity.m in Sources */,
-				550A6AED1CE503A2001D298C /* UIAlertView+SAPExtensions.m in Sources */,
 				550A6A0C1CE50066001D298C /* AppDelegate.m in Sources */,
 				55F19C371CE5B1D400F54D2D /* SAPActivityCell.m in Sources */,
 				550A6B0E1CE503A2001D298C /* SAPSetters.m in Sources */,
