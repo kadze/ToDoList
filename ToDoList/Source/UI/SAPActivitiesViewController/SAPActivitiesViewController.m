@@ -21,11 +21,15 @@
 
 #import "SAPViewControllerMacro.h"
 
-static NSInteger  const kSAPSectionsCount       = 3;
-static CGFloat    const kSAPEstimatedRowHeight  = 66.0;
-static NSString * const kSAPSection1Header      = @"Outdated";
-static NSString * const kSAPSection2Header      = @"Actual";
-static NSString * const kSAPSection3Header      = @"Completed";
+static NSInteger  const kSAPSectionsCount           = 3;
+static CGFloat    const kSAPEstimatedRowHeight      = 66.0;
+static NSString * const kSAPSection1Header          = @"Outdated";
+static NSString * const kSAPSection2Header          = @"Actual";
+static NSString * const kSAPSection3Header          = @"Completed";
+static NSString * const kSAPEditActionTitle         = @"Edit";
+static NSString * const kSAPCompleteActionTitle     = @"Complete";
+static NSString * const kSAPDeleteActionTitle       = @"Delete";
+static NSString * const kSAPAllertControllerTitle   = @"Select action";
 
 SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView, mainView);
 
@@ -34,8 +38,14 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (Class)cellClass;
 - (void)customizeRightBarButton;
+
 - (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath;
 - (SAPArrayModel *)modelForSection:(NSInteger)section;
+
+- (UIAlertController *)alertControllerWithActions:(NSArray *)actions;
+- (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity;
+- (UIAlertAction *)completeActionWithActivity:(SAPActivity *)activity;
+- (UIAlertAction *)deleteActionWithActivity:(SAPActivity *)activity;
 
 @end
 
@@ -103,31 +113,13 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SAPArrayModel *activities = [self modelForSectionAtIndexPath:indexPath];
-//    controller.model = self.items[indexPath.row];
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Choose action"
-                                                                        message:@"choose action, babe"
-                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"Edit"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           //edit code
-                                                       }];
+    SAPActivity *activity = activities[indexPath.row];
+ 
+    UIAlertAction *editAction = [self editActionWithActivity:activity];
+    UIAlertAction *completeAction = [self editActionWithActivity:activity];
+    UIAlertAction *deleteAction = [self deleteActionWithActivity:activity];
     
-    UIAlertAction *completeAction = [UIAlertAction actionWithTitle:@"Complete"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           //edit code
-                                                       }];
-    
-    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete"
-                                                         style:UIAlertActionStyleDestructive
-                                                       handler:^(UIAlertAction *action) {
-                                                           //edit code
-                                                       }];
-    
-    [controller addAction:editAction];
-    [controller addAction:completeAction];
-    [controller addAction:deleteAction];
+    UIAlertController *controller = [self alertControllerWithActions:@[editAction, completeAction, deleteAction]];
     
     [self presentViewController:controller animated:YES completion:nil];
 }
@@ -226,5 +218,43 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
             break;
     }
 }
-   
+
+- (UIAlertController *)alertControllerWithActions:(NSArray *)actions {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:kSAPAllertControllerTitle
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (UIAlertAction *action in actions) {
+        [controller addAction:action];
+    }
+    
+    return controller;
+}
+
+- (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity {
+    return [UIAlertAction actionWithTitle:kSAPEditActionTitle
+                                    style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action) {
+                                      //edit code
+                                  }];
+}
+
+- (UIAlertAction *)completeActionWithActivity:(SAPActivity *)activity {
+    SAPActivities *model = self.model;
+    
+    return [UIAlertAction actionWithTitle:kSAPCompleteActionTitle
+                                    style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action) {
+//                                      [model completeActivity:activity];
+                                  }];
+}
+
+- (UIAlertAction *)deleteActionWithActivity:(SAPActivity *)activity {
+    return [UIAlertAction actionWithTitle:kSAPDeleteActionTitle
+                                    style:UIAlertActionStyleDestructive
+                                  handler:^(UIAlertAction *action) {
+                                      //edit code
+                                  }];
+}
+
 @end
