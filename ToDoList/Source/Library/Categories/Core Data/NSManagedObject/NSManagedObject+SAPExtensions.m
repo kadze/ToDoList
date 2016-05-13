@@ -15,6 +15,20 @@
 #pragma mark -
 #pragma mark Public
 
+- (void)setCustomValue:(id)value forKey:(NSString *)key {
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:value forKey:key];
+    [self didChangeValueForKey:key];
+}
+
+- (id)customValueForKey:(NSString *)key {
+    [self willAccessValueForKey:key];
+    id result = [self primitiveValueForKey:key];
+    [self didAccessValueForKey:key];
+    
+    return result;
+}
+
 - (void)addCustomValue:(id)value inMutableSetForKey:(NSString *)key {
     [self handleCustomValue:value
          inMutableSetForKey:key
