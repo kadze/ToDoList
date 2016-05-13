@@ -8,11 +8,17 @@
 
 #import "SAPActivity.h"
 
+#import "NSManagedObject+SAPExtensions.h"
+
 @implementation SAPActivity
 
 #warning temporaty comment for testing
 //@dynamic note;
 //@dynamic date;
 //@dynamic type;
+
+//- (void)setType:(SAPActivityType)type {
+//    [self setCustomValue:@(type) forKey:NSStringFromSelector(@selector(type))];
+//}
 
 @end

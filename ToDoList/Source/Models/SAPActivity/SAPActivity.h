@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef NS_ENUM(NSUInteger, SAPActivityType) {
+    kSAPActivityStateOutdated,
+    kSAPActivityStateActual,
+    kSAPActivityStateCompleted
+};
+
 #warning temporary testing code
-@interface SAPActivity :NSObject//: NSManagedObject
-@property (nonatomic, strong) NSString  *note;
-@property (nonatomic, strong) NSDate    *date;
-@property (nonatomic, strong) NSNumber  *type;
+//@interface SAPActivity : NSManagedObject
+@interface SAPActivity :NSObject
+@property (nonatomic, assign) SAPActivityType   type;
+@property (nonatomic, strong) NSString          *note;
+@property (nonatomic, strong) NSDate            *date;
 
 @end
