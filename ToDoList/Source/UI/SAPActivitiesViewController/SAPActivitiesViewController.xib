@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PRe-3G-6fu">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PRe-3G-6fu">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -25,6 +25,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="PRe-3G-6fu" secondAttribute="bottom" id="CPn-wL-0WN"/>
+                <constraint firstItem="PRe-3G-6fu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SfA-Mn-TPl"/>
+                <constraint firstAttribute="trailing" secondItem="PRe-3G-6fu" secondAttribute="trailing" id="o7g-nv-mVz"/>
+                <constraint firstItem="PRe-3G-6fu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="p1F-ch-whz"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="tableView" destination="PRe-3G-6fu" id="9m7-zh-ppN"/>

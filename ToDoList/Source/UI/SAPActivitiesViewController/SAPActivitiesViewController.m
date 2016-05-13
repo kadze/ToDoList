@@ -21,22 +21,25 @@
 
 #import "SAPViewControllerMacro.h"
 
-static NSInteger const kSAPSectionsCount = 3;
-static NSString * const kSAPSection1Header = @"Outdated";
-static NSString * const kSAPSection2Header = @"Actual";
-static NSString * const kSAPSection3Header = @"Completed";
+static NSInteger  const kSAPSectionsCount       = 3;
+static CGFloat    const kSAPEstimatedRowHeight  = 66.0;
+static NSString * const kSAPSection1Header      = @"Outdated";
+static NSString * const kSAPSection2Header      = @"Actual";
+static NSString * const kSAPSection3Header      = @"Completed";
 
 SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView, mainView);
 
 @interface SAPActivitiesViewController ()
+@property (nonatomic, readonly) UITableView *tableView;
 
 - (Class)cellClass;
-- (UITableView *)tableView;
 - (void)customizeRightBarButton;
 
 @end
 
 @implementation SAPActivitiesViewController
+
+@dynamic tableView;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -48,14 +51,28 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return self;
 }
 
-#warning temporary code for testing
+#pragma mark -
+#pragma mark Accessors
+
+- (UITableView *)tableView {
+    return self.mainView.tableView;
+}
+
+#pragma mark-
+#pragma mark View Lifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.tableView.estimatedRowHeight = kSAPEstimatedRowHeight;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    #warning temporary code for testing
     SAPActivities *model = [SAPActivities new];
     
     for (int counter = 0; counter < 10; counter++) {
         SAPActivity *activity = [SAPActivity new];
-        activity.note = [NSString stringWithFormat:@"outdated %d", counter];
+        activity.note = [NSString stringWithFormat:@"outdatedddddddddddddddddddddddddddd dddddddddddddddd %d", counter];
         activity.date = [NSDate date];
         [model addOutdated:activity];
     }
@@ -172,10 +189,6 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (Class)cellClass {
     return [SAPActivityCell class];
-}
-
-- (UITableView *)tableView {
-    return self.mainView.tableView;
 }
 
 - (void)customizeRightBarButton {
