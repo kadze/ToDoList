@@ -10,8 +10,9 @@
 
 @implementation SAPActivity
 
-@dynamic note;
-@dynamic date;
-@dynamic type;
+#warning temporaty comment for testing
+//@dynamic note;
+//@dynamic date;
+//@dynamic type;
 
 @end
