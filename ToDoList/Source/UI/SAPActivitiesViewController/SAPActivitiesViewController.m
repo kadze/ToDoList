@@ -16,6 +16,7 @@
 #import "SAPTableViewCell.h"
 
 #import "UITableView+SAPExtensions.h"
+#import "UIAlertController+SAPExtensions.h"
 
 #import "SAPModelView.h"
 
@@ -42,7 +43,6 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 - (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath;
 - (SAPArrayModel *)modelForSection:(NSInteger)section;
 
-- (UIAlertController *)alertControllerWithActions:(NSArray *)actions;
 - (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity;
 - (UIAlertAction *)completeActionWithActivity:(SAPActivity *)activity;
 - (UIAlertAction *)deleteActionWithActivity:(SAPActivity *)activity;
@@ -104,9 +104,9 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     }
     
     self.model = model;
+    
+    ////
 }
-
-////
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -116,10 +116,12 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     SAPActivity *activity = activities[indexPath.row];
  
     UIAlertAction *editAction = [self editActionWithActivity:activity];
-    UIAlertAction *completeAction = [self editActionWithActivity:activity];
+    UIAlertAction *completeAction = [self completeActionWithActivity:activity];
     UIAlertAction *deleteAction = [self deleteActionWithActivity:activity];
     
-    UIAlertController *controller = [self alertControllerWithActions:@[editAction, completeAction, deleteAction]];
+    UIAlertController *controller = [UIAlertController actionSheetWithTitle:kSAPAllertControllerTitle
+                                                                    message:nil
+                                                                    actions:@[editAction, completeAction, deleteAction]];
     
     [self presentViewController:controller animated:YES completion:nil];
 }
@@ -217,18 +219,6 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
             return nil;
             break;
     }
-}
-
-- (UIAlertController *)alertControllerWithActions:(NSArray *)actions {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:kSAPAllertControllerTitle
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    for (UIAlertAction *action in actions) {
-        [controller addAction:action];
-    }
-    
-    return controller;
 }
 
 - (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity {
