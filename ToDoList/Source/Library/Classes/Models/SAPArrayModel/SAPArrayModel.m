@@ -124,6 +124,13 @@
     }
 }
 
+- (void)removeObject:(id)anObject {
+    @synchronized(self) {
+        NSUInteger index = [self.mutableObjects indexOfObject:anObject];
+        [self removeObjectAtIndex:index];
+    }
+}
+
 #pragma mark -
 #pragma mark Private
 
