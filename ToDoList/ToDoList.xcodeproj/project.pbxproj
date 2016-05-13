@@ -64,13 +64,15 @@
 		550A6B0E1CE503A2001D298C /* SAPSetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6ACF1CE503A2001D298C /* SAPSetters.m */; };
 		550A6B1A1CE50895001D298C /* SAPActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B181CE50895001D298C /* SAPActivitiesViewController.m */; };
 		550A6B1B1CE50895001D298C /* SAPActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550A6B191CE50895001D298C /* SAPActivitiesViewController.xib */; };
-		550A6B1E1CE5099E001D298C /* SAPActivitiesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B1D1CE5099E001D298C /* SAPActivitiesView.m */; };
 		550A6B211CE50AA1001D298C /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B1F1CE50AA1001D298C /* ToDoList.xcdatamodeld */; };
 		550A6B251CE50AE2001D298C /* SAPActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B231CE50AE2001D298C /* SAPActivityViewController.m */; };
 		550A6B261CE50AE2001D298C /* SAPActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550A6B241CE50AE2001D298C /* SAPActivityViewController.xib */; };
 		550A6B291CE50B20001D298C /* SAPActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B281CE50B20001D298C /* SAPActivityView.m */; };
 		550A6B2F1CE50D94001D298C /* SAPActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B2D1CE50D94001D298C /* SAPActivity.m */; };
 		550A6B331CE520B4001D298C /* SAPActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B321CE520B4001D298C /* SAPActivities.m */; };
+		55F19C2E1CE5B15100F54D2D /* SAPActivitiesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F19C2C1CE5B15100F54D2D /* SAPActivitiesView.m */; };
+		55F19C371CE5B1D400F54D2D /* SAPActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */; };
+		55F19C381CE5B1D400F54D2D /* SAPActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,8 +203,6 @@
 		550A6B171CE50895001D298C /* SAPActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivitiesViewController.h; sourceTree = "<group>"; };
 		550A6B181CE50895001D298C /* SAPActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivitiesViewController.m; sourceTree = "<group>"; };
 		550A6B191CE50895001D298C /* SAPActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivitiesViewController.xib; sourceTree = "<group>"; };
-		550A6B1C1CE5099E001D298C /* SAPActivitiesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivitiesView.h; sourceTree = "<group>"; };
-		550A6B1D1CE5099E001D298C /* SAPActivitiesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivitiesView.m; sourceTree = "<group>"; };
 		550A6B201CE50AA1001D298C /* ToDoList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoList.xcdatamodel; sourceTree = "<group>"; };
 		550A6B221CE50AE2001D298C /* SAPActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivityViewController.h; sourceTree = "<group>"; };
 		550A6B231CE50AE2001D298C /* SAPActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivityViewController.m; sourceTree = "<group>"; };
@@ -213,6 +213,11 @@
 		550A6B2D1CE50D94001D298C /* SAPActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivity.m; sourceTree = "<group>"; };
 		550A6B311CE520B4001D298C /* SAPActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivities.h; sourceTree = "<group>"; };
 		550A6B321CE520B4001D298C /* SAPActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivities.m; sourceTree = "<group>"; };
+		55F19C2B1CE5B15100F54D2D /* SAPActivitiesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivitiesView.h; sourceTree = "<group>"; };
+		55F19C2C1CE5B15100F54D2D /* SAPActivitiesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivitiesView.m; sourceTree = "<group>"; };
+		55F19C341CE5B1D400F54D2D /* SAPActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivityCell.h; sourceTree = "<group>"; };
+		55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivityCell.m; sourceTree = "<group>"; };
+		55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivityCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -932,8 +937,7 @@
 		550A6B0F1CE50478001D298C /* SAPActivitiesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				550A6B1C1CE5099E001D298C /* SAPActivitiesView.h */,
-				550A6B1D1CE5099E001D298C /* SAPActivitiesView.m */,
+				55F19C291CE5B15100F54D2D /* Views */,
 				550A6B171CE50895001D298C /* SAPActivitiesViewController.h */,
 				550A6B181CE50895001D298C /* SAPActivitiesViewController.m */,
 				550A6B191CE50895001D298C /* SAPActivitiesViewController.xib */,
@@ -969,6 +973,34 @@
 				550A6B321CE520B4001D298C /* SAPActivities.m */,
 			);
 			path = SAPActivities;
+			sourceTree = "<group>";
+		};
+		55F19C291CE5B15100F54D2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55F19C2A1CE5B15100F54D2D /* SAPActivitiesView */,
+				55F19C2D1CE5B15100F54D2D /* SAPActivityCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		55F19C2A1CE5B15100F54D2D /* SAPActivitiesView */ = {
+			isa = PBXGroup;
+			children = (
+				55F19C2B1CE5B15100F54D2D /* SAPActivitiesView.h */,
+				55F19C2C1CE5B15100F54D2D /* SAPActivitiesView.m */,
+			);
+			path = SAPActivitiesView;
+			sourceTree = "<group>";
+		};
+		55F19C2D1CE5B15100F54D2D /* SAPActivityCell */ = {
+			isa = PBXGroup;
+			children = (
+				55F19C341CE5B1D400F54D2D /* SAPActivityCell.h */,
+				55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */,
+				55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */,
+			);
+			path = SAPActivityCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1032,6 +1064,7 @@
 				550A6A201CE50236001D298C /* Assets.xcassets in Resources */,
 				550A6B091CE503A2001D298C /* SAPActivityIndicator.xib in Resources */,
 				550A6B261CE50AE2001D298C /* SAPActivityViewController.xib in Resources */,
+				55F19C381CE5B1D400F54D2D /* SAPActivityCell.xib in Resources */,
 				550A6B1B1CE50895001D298C /* SAPActivitiesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1053,10 +1086,12 @@
 				550A6AFA1CE503A2001D298C /* SAPArrayModel.m in Sources */,
 				550A6B051CE503A2001D298C /* SAPReference.m in Sources */,
 				550A6B0D1CE503A2001D298C /* SAPDispatch.m in Sources */,
+				55F19C2E1CE5B15100F54D2D /* SAPActivitiesView.m in Sources */,
 				550A6B021CE503A2001D298C /* SAPObjectCache.m in Sources */,
 				550A6AEA1CE503A2001D298C /* NSString+IOPRandomName.m in Sources */,
 				550A6AED1CE503A2001D298C /* UIAlertView+SAPExtensions.m in Sources */,
 				550A6A0C1CE50066001D298C /* AppDelegate.m in Sources */,
+				55F19C371CE5B1D400F54D2D /* SAPActivityCell.m in Sources */,
 				550A6B0E1CE503A2001D298C /* SAPSetters.m in Sources */,
 				550A6AE31CE503A2001D298C /* NSURL+SAPJSONURL.m in Sources */,
 				550A6ADC1CE503A2001D298C /* NSManagedObject+SAPExtensions.m in Sources */,
@@ -1073,7 +1108,6 @@
 				550A6B001CE503A2001D298C /* SAPModel.m in Sources */,
 				550A6AE21CE503A2001D298C /* NSString+SAPJSONString.m in Sources */,
 				550A6AE11CE503A2001D298C /* NSObject+SAPJSONObject.m in Sources */,
-				550A6B1E1CE5099E001D298C /* SAPActivitiesView.m in Sources */,
 				550A6A091CE50066001D298C /* main.m in Sources */,
 				550A6AEC1CE503A2001D298C /* NSURL+SAPExtensions.m in Sources */,
 				550A6AF81CE503A2001D298C /* SAPCollectionChangeIndexModel+UITableView.m in Sources */,
@@ -1232,6 +1266,7 @@
 				550A6A1D1CE50066001D298C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
