@@ -87,6 +87,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
         activity.note = [NSString stringWithFormat:@"outdatedddddddddddddddddddddddddddd dddddddddddddddd %d", counter];
         activity.date = [NSDate dateWithTimeIntervalSinceNow:-86400];
         [model addObject:activity];
+        [activity addObserverObject:self];
     }
     
     for (int counter = 0; counter < 10; counter++) {
@@ -94,6 +95,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
         activity.note = [NSString stringWithFormat:@"actual %d", counter];
         activity.date = [NSDate dateWithTimeIntervalSinceNow:86400];
         [model addObject:activity];
+        [activity addObserverObject:self];
     }
     
     for (int counter = 0; counter < 10; counter++) {
@@ -102,6 +104,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
         activity.date = [NSDate date];
         activity.completed = @(1);
         [model addObject:activity];
+        [activity addObserverObject:self];
     }
     
     self.model = model;
@@ -200,7 +203,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return [self modelForSection:indexPath.section];
 }
 
-- (SAPArrayModel *)modelForSection:(NSInteger)section {
+- (NSArray *)modelForSection:(NSInteger)section {
     SAPActivities *model = self.model;
     
     switch (section) {
@@ -231,12 +234,12 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (UIAlertAction *)completeActionWithActivity:(SAPActivity *)activity {
-    SAPActivities *model = self.model;
-    
     return [UIAlertAction actionWithTitle:kSAPCompleteActionTitle
                                     style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action) {
-//                                      [model completeActivity:activity];
+                                      activity.completed = @(1);
+                                      [activity notifyObserversWithSelector:@selector(modelDidFinishLoading:)
+                                                                 withObject:activity];
                                   }];
 }
 

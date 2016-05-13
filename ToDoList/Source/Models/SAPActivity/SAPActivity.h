@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+#import "SAPModel.h"
+
 typedef NS_ENUM(NSUInteger, SAPActivityType) {
     kSAPActivityTypeCall,
     kSAPActivityTypeMeeting,
@@ -16,7 +18,7 @@ typedef NS_ENUM(NSUInteger, SAPActivityType) {
 
 #warning temporary testing code
 //@interface SAPActivity : NSManagedObject
-@interface SAPActivity : NSObject
+@interface SAPActivity : SAPModel
 @property (nonatomic, assign) SAPActivityType   type;
 @property (nonatomic, strong) NSNumber          *completed;
 @property (nonatomic, strong) NSString          *note;
