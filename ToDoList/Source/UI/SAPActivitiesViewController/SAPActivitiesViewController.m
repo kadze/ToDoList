@@ -9,26 +9,64 @@
 
 #import "SAPActivitiesViewController.h"
 
+#import "SAPActivity.h"
 #import "SAPActivities.h"
 #import "SAPActivityCell.h"
+#import "SAPActivitiesview.h"
 #import "SAPTableViewCell.h"
 
 #import "UITableView+SAPExtensions.h"
 
 #import "SAPModelView.h"
 
+#import "SAPViewControllerMacro.h"
+
 static NSInteger const kSAPSectionsCount = 3;
 static NSString * const kSAPSection1Header = @"Outdated";
 static NSString * const kSAPSection2Header = @"Actual";
 static NSString * const kSAPSection3Header = @"Completed";
 
+SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView, mainView);
+
 @interface SAPActivitiesViewController ()
 
 - (Class)cellClass;
+- (UITableView *)tableView;
 
 @end
 
 @implementation SAPActivitiesViewController
+
+#warning temporary code for testing
+
+- (void)viewDidLoad {
+    SAPActivities *model = [SAPActivities new];
+    
+    for (int counter = 0; counter < 10; counter++) {
+        SAPActivity *activity = [SAPActivity new];
+        activity.note = [NSString stringWithFormat:@"outdated %d", counter];
+        activity.date = [NSDate date];
+        [model addOutdated:activity];
+    }
+    
+    for (int counter = 0; counter < 10; counter++) {
+        SAPActivity *activity = [SAPActivity new];
+        activity.note = [NSString stringWithFormat:@"actual %d", counter];
+        activity.date = [NSDate date];
+        [model addActual:activity];
+    }
+    
+    for (int counter = 0; counter < 10; counter++) {
+        SAPActivity *activity = [SAPActivity new];
+        activity.note = [NSString stringWithFormat:@"completed %d", counter];
+        activity.date = [NSDate date];
+        [model addCompleted:activity];
+    }
+    
+    self.model = model;
+}
+
+////
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -107,10 +145,27 @@ static NSString * const kSAPSection3Header = @"Completed";
 }
 
 #pragma mark -
+#pragma mark Public
+
+- (void)updateViewControllerWithModel:(id)model {
+    [self.tableView reloadData];
+}
+
+#warning temporary testing code
+- (void)finishModelSetting {
+    [self.model notifyObserversWithSelector:@selector(modelDidFinishLoading:) withObject:self.model];
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (Class)cellClass {
     return [SAPActivityCell class];
 }
+
+- (UITableView *)tableView {
+    return self.mainView.tableView;
+}
+
 
 @end
