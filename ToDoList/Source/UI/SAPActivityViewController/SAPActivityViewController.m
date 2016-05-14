@@ -5,6 +5,10 @@
 //  Created by Andrey on 5/12/16.
 //  Copyright © 2016 Andrey. All rights reserved.
 //
+#import <UIKit/UIBarButtonItem.h>
+#import <UIKit/UINavigationController.h>
+#import <UIKit/UINavigationBar.h>
+#import <UIKit/UIToolbar.h>
 
 #import "SAPActivityViewController.h"
 
@@ -61,7 +65,6 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
     
     self.tableView.estimatedRowHeight = kSAPEstimatedRowHeight;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
 }
 
 #pragma mark -
@@ -83,7 +86,15 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 #pragma mark Private
 
 - (void)customizeNavigationBar {
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                                                target:self
+                                                                                action:nil];
     
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                target:self
+                                                                                action:nil];
+    
+    [self.navigationItem setRightBarButtonItems:@[saveButton, cancelButton]];
 }
 
 - (Class)cellClassForRow:(NSInteger)row {
