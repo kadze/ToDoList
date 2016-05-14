@@ -9,6 +9,9 @@
 #import "SAPTableViewCell.h"
 #import "SAPModelView.h"
 
+@class UIDatePicker;
+
 @interface SAPDateCell : SAPTableViewCell <SAPModelView>
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 
 @end

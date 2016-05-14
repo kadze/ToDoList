@@ -9,6 +9,9 @@
 #import "SAPTableViewCell.h"
 #import "SAPModelView.h"
 
+@class UISegmentedControl;
+
 @interface SAPTypeCell : SAPTableViewCell <SAPModelView>
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 
 @end

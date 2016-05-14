@@ -9,6 +9,9 @@
 #import "SAPTableViewCell.h"
 #import "SAPModelView.h"
 
+@class UITextView;
+
 @interface SAPNoteCell : SAPTableViewCell <SAPModelView>
+@property (nonatomic, strong) IBOutlet UITextView *textView;
 
 @end

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,14 +15,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="323" height="218"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="HNR-MD-KMY">
+                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="HNR-MD-KMY">
                         <rect key="frame" x="0.0" y="0.0" width="323" height="218"/>
                         <date key="date" timeIntervalSinceReferenceDate="484872071.83740801">
                             <!--2016-05-13 22:41:11 +0000-->
                         </date>
                     </datePicker>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="HNR-MD-KMY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Fws-yQ-MvO"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="HNR-MD-KMY" secondAttribute="bottom" id="Iw3-uR-WTe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="HNR-MD-KMY" secondAttribute="trailing" id="reZ-lM-Ti2"/>
+                    <constraint firstItem="HNR-MD-KMY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="sRd-El-0HS"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="datePicker" destination="HNR-MD-KMY" id="1SZ-7q-mzk"/>
+            </connections>
             <point key="canvasLocation" x="252.5" y="285.5"/>
         </tableViewCell>
     </objects>
