@@ -31,8 +31,9 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 @interface SAPActivityViewController ()
 @property (nonatomic, readonly) UITableView *tableView;
 
-- (void)customizeNavigationBar;
+- (void)onCancelButton;
 - (Class)cellClassForRow:(NSInteger)row;
+- (void)customizeNavigationBar;
 
 @end
 
@@ -68,6 +69,13 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 }
 
 #pragma mark -
+#pragma mark Interface Handling
+
+- (void)onCancelButton {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -92,9 +100,10 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                 target:self
-                                                                                action:nil];
+                                                                                action:@selector(onCancelButton)];
     
-    [self.navigationItem setRightBarButtonItems:@[saveButton, cancelButton]];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    self.navigationItem.leftBarButtonItem = cancelButton;
 }
 
 - (Class)cellClassForRow:(NSInteger)row {
