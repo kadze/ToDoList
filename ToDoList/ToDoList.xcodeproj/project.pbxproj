@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2141E0DAD9971036CF42FB95 /* libPods-ToDoList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C61AF6D5400EC5D2976C0A /* libPods-ToDoList.a */; };
 		550A6A091CE50066001D298C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A081CE50066001D298C /* main.m */; };
 		550A6A0C1CE50066001D298C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6A0B1CE50066001D298C /* AppDelegate.m */; };
 		550A6A201CE50236001D298C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 550A6A1F1CE50236001D298C /* Assets.xcassets */; };
@@ -213,6 +214,7 @@
 		550A6B241CE50AE2001D298C /* SAPActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivityViewController.xib; sourceTree = "<group>"; };
 		550A6B311CE520B4001D298C /* SAPActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivities.h; sourceTree = "<group>"; };
 		550A6B321CE520B4001D298C /* SAPActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivities.m; sourceTree = "<group>"; };
+		55C61AF6D5400EC5D2976C0A /* libPods-ToDoList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDoList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55EA685D1CE6687500642CC9 /* UIAlertController+SAPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+SAPExtensions.h"; sourceTree = "<group>"; };
 		55EA685E1CE6687500642CC9 /* UIAlertController+SAPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+SAPExtensions.m"; sourceTree = "<group>"; };
 		55EA68661CE672F400642CC9 /* SAPActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivity.h; sourceTree = "<group>"; };
@@ -233,6 +235,8 @@
 		55F19C341CE5B1D400F54D2D /* SAPActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivityCell.h; sourceTree = "<group>"; };
 		55F19C351CE5B1D400F54D2D /* SAPActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivityCell.m; sourceTree = "<group>"; };
 		55F19C361CE5B1D400F54D2D /* SAPActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivityCell.xib; sourceTree = "<group>"; };
+		8AF9CFF6858383427014EB1E /* Pods-ToDoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList/Pods-ToDoList.debug.xcconfig"; sourceTree = "<group>"; };
+		C8A99B4336E8B8D64BA32DB6 /* Pods-ToDoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList/Pods-ToDoList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,12 +244,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2141E0DAD9971036CF42FB95 /* libPods-ToDoList.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5072E7903191F460BF42D921 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55C61AF6D5400EC5D2976C0A /* libPods-ToDoList.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		550A69FB1CE50066001D298C = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +266,8 @@
 				550A6A211CE50241001D298C /* Source */,
 				550A6A1E1CE50236001D298C /* Resources */,
 				550A6A051CE50066001D298C /* Products */,
+				7D76333ECF7CBEC3187FBDBC /* Pods */,
+				5072E7903191F460BF42D921 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1067,6 +1082,15 @@
 			path = SAPActivity;
 			sourceTree = "<group>";
 		};
+		7D76333ECF7CBEC3187FBDBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8AF9CFF6858383427014EB1E /* Pods-ToDoList.debug.xcconfig */,
+				C8A99B4336E8B8D64BA32DB6 /* Pods-ToDoList.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1074,9 +1098,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 550A6A1B1CE50066001D298C /* Build configuration list for PBXNativeTarget "ToDoList" */;
 			buildPhases = (
+				A69EF5965F38545CD742AC6D /* 📦 Check Pods Manifest.lock */,
 				550A6A001CE50066001D298C /* Sources */,
 				550A6A011CE50066001D298C /* Frameworks */,
 				550A6A021CE50066001D298C /* Resources */,
+				4C97CC6AD515763027227346 /* 📦 Embed Pods Frameworks */,
+				B2A216AD3D4E63E161A51B7D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1137,6 +1164,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C97CC6AD515763027227346 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ToDoList/Pods-ToDoList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A69EF5965F38545CD742AC6D /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B2A216AD3D4E63E161A51B7D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ToDoList/Pods-ToDoList-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		550A6A001CE50066001D298C /* Sources */ = {
@@ -1297,6 +1372,7 @@
 		};
 		550A6A1C1CE50066001D298C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AF9CFF6858383427014EB1E /* Pods-ToDoList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ToDoList/Info.plist;
@@ -1308,6 +1384,7 @@
 		};
 		550A6A1D1CE50066001D298C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A99B4336E8B8D64BA32DB6 /* Pods-ToDoList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ToDoList/Info.plist;
