@@ -33,4 +33,12 @@
     self.segmentedControl.selectedSegmentIndex = model.type;
 }
 
+#pragma mark -
+#pragma mark Public
+
+- (void)fillModelFromView {
+    SAPActivity *model = self.model;
+    model.type = self.segmentedControl.selectedSegmentIndex;
+}
+
 @end

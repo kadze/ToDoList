@@ -9,19 +9,21 @@
 #import <CoreData/CoreData.h>
 
 #import "SAPModel.h"
+#import "SAPManagedObject.h"
 
-typedef NS_ENUM(NSUInteger, SAPActivityType) {
+#import "SAPModelProtocol.h"
+
+typedef NS_ENUM(uint16_t, SAPActivityType) {
     kSAPActivityTypeCall,
     kSAPActivityTypeMeeting,
     kSAPActivityTypeTask
 };
 
-#warning temporary testing code
-//@interface SAPActivity : NSManagedObject
-@interface SAPActivity : SAPModel
-@property (nonatomic, assign) SAPActivityType   type;
-@property (nonatomic, strong) NSNumber          *completed;
-@property (nonatomic, strong) NSString          *note;
-@property (nonatomic, strong) NSDate            *date;
+@interface SAPActivity : SAPManagedObject<SAPModelProtocol>
+@property (nonatomic, assign)   SAPActivityType type;
+@property (nonatomic, strong)   NSNumber        *completed;
+@property (nonatomic, strong)   NSString        *note;
+@property (nonatomic, strong)   NSDate          *date;
+@property (nonatomic, readonly) NSString        *section;
 
 @end

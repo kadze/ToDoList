@@ -30,7 +30,17 @@
 #pragma mark SAPModelView
 
 - (void)fillWithModel:(SAPActivity *)model {
-    self.textView.text = model.note;
+    if (model) {
+        self.textView.text = model.note;
+    }
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)fillModelFromView {
+    SAPActivity *model = self.model;
+    model.note = self.textView.text;
 }
 
 @end

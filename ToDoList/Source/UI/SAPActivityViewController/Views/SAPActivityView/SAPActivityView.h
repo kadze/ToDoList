@@ -11,7 +11,7 @@
 
 #import "SAPModelView.h"
 
-@interface SAPActivityView : SAPView <SAPModelView>
+@interface SAPActivityView : SAPView
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

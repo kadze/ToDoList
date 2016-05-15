@@ -30,7 +30,18 @@
 #pragma mark SAPModelView
 
 - (void)fillWithModel:(SAPActivity *)model {
-    self.datePicker.date = model.date;
+    NSDate *date = model.date;
+    if (date) {
+        self.datePicker.date = date;
+    }
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)fillModelFromView {
+    SAPActivity *model = self.model;
+    model.date = self.datePicker.date;
 }
 
 @end

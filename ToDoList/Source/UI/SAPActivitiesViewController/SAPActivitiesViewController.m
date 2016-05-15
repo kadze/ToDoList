@@ -6,6 +6,7 @@
 //  Copyright © 2016 Andrey. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 #import "SAPActivitiesViewController.h"
 
@@ -23,7 +24,6 @@
 
 #import "SAPViewControllerMacro.h"
 
-static NSInteger  const kSAPSectionsCount           = 3;
 static CGFloat    const kSAPEstimatedRowHeight      = 66.0;
 static NSString * const kSAPSection1Header          = @"Outdated";
 static NSString * const kSAPSection2Header          = @"Actual";
@@ -38,13 +38,10 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 @interface SAPActivitiesViewController ()
 @property (nonatomic, readonly) UITableView *tableView;
 
-- (Class)cellClass;
+//- (Class)cellClass;
 - (void)customizeRightBarButton;
 - (void)onAddTask;
 - (void)showActivityViewControllerWithModel:(SAPActivity *)model;
-
-- (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath;
-- (SAPArrayModel *)modelForSection:(NSInteger)section;
 
 - (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity;
 - (UIAlertAction *)completeActionWithActivity:(SAPActivity *)activity;
@@ -81,46 +78,13 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     
     self.tableView.estimatedRowHeight = kSAPEstimatedRowHeight;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    #warning temporary code for testing
-    SAPActivities *model = [SAPActivities new];
-    
-    for (int counter = 0; counter < 10; counter++) {
-        SAPActivity *activity = [SAPActivity new];
-        activity.note = [NSString stringWithFormat:@"outdatedddddddddddddddddddddddddddd dddddddddddddddd %d", counter];
-        activity.date = [NSDate dateWithTimeIntervalSinceNow:-86400];
-        [model addObject:activity];
-        [activity addObserverObject:self];
-    }
-    
-    for (int counter = 0; counter < 10; counter++) {
-        SAPActivity *activity = [SAPActivity new];
-        activity.note = [NSString stringWithFormat:@"actual %d", counter];
-        activity.date = [NSDate dateWithTimeIntervalSinceNow:86400];
-        [model addObject:activity];
-        [activity addObserverObject:self];
-    }
-    
-    for (int counter = 0; counter < 10; counter++) {
-        SAPActivity *activity = [SAPActivity new];
-        activity.note = [NSString stringWithFormat:@"completed %d", counter];
-        activity.date = [NSDate date];
-        activity.completed = @(1);
-        [model addObject:activity];
-        [activity addObserverObject:self];
-    }
-    
-    self.model = model;
-    
-    ////
 }
 
 #pragma mark -
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SAPArrayModel *activities = [self modelForSectionAtIndexPath:indexPath];
-    SAPActivity *activity = activities[indexPath.row];
+    SAPActivity *activity = [self.fetchedResultsController objectAtIndexPath:indexPath];
  
     UIAlertAction *editAction = [self editActionWithActivity:activity];
     UIAlertAction *completeAction = [self completeActionWithActivity:activity];
@@ -134,62 +98,38 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 #pragma mark -
-#pragma mark UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self modelForSection:section].count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SAPTableViewCell<SAPModelView> *cell = [tableView cellWithClass:[self cellClass]];
-    SAPArrayModel *activities = [self modelForSectionAtIndexPath:indexPath];
-    cell.model = activities[indexPath.row];
-    
-    return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kSAPSectionsCount;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return kSAPSection1Header;
-            break;
-            
-        case 1:
-            return kSAPSection2Header;
-            break;
-            
-        case 2:
-            return kSAPSection3Header;
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
-}
-
-#pragma mark -
 #pragma mark Public
 
 - (void)updateViewControllerWithModel:(id)model {
-    [self.tableView reloadData];
-}
 
-#warning temporary testing code
-- (void)finishModelSetting {
-    [self.model notifyObserversWithSelector:@selector(modelDidFinishLoading:) withObject:self.model];
 }
-
-#pragma mark -
-#pragma mark Private
 
 - (Class)cellClass {
     return [SAPActivityCell class];
 }
+
+- (void)finishModelSetting {
+
+}
+
+- (Class)entityClass {
+    return [SAPActivity class];
+}
+
+- (NSString *)sectionNameKeyPath {
+    return @"section";
+}
+
+- (NSArray *)sortDescriptors {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed"
+                                                                   ascending:YES];
+
+    return @[sortDescriptor];
+}
+
+
+#pragma mark -
+#pragma mark Private
 
 - (void)customizeRightBarButton {
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAddTask)];
@@ -197,39 +137,13 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (void)onAddTask {
-    [self showActivityViewControllerWithModel:[SAPActivity new]];
+    [self showActivityViewControllerWithModel:[SAPActivity MR_createEntity]];
 }
 
 - (void)showActivityViewControllerWithModel:(SAPActivity *)model {
     SAPActivityViewController *controller = [SAPActivityViewController new];
     controller.model = model;
     [self.navigationController pushViewController:controller animated:NO];
-}
-
-- (SAPArrayModel *)modelForSectionAtIndexPath:(NSIndexPath*)indexPath {
-    return [self modelForSection:indexPath.section];
-}
-
-- (NSArray *)modelForSection:(NSInteger)section {
-    SAPActivities *model = self.model;
-    
-    switch (section) {
-        case 0:
-            return model.outdated;
-            break;
-            
-        case 1:
-            return model.actual;
-            break;
-            
-        case 2:
-            return model.completed;
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
 }
 
 - (UIAlertAction *)editActionWithActivity:(SAPActivity *)activity {
@@ -245,18 +159,14 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
                                     style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action) {
                                       activity.completed = @(1);
-                                      [activity notifyObserversWithSelector:@selector(modelDidFinishLoading:)
-                                                                 withObject:activity];
                                   }];
 }
 
 - (UIAlertAction *)deleteActionWithActivity:(SAPActivity *)activity {
-    SAPActivities *model = self.model;
     return [UIAlertAction actionWithTitle:kSAPDeleteActionTitle
                                     style:UIAlertActionStyleDestructive
                                   handler:^(UIAlertAction *action) {
-                                      [model removeObject:activity];
-                                      [model notifyObserversWithSelector:@selector(modelDidFinishLoading:) withObject:self.model];
+                                      [activity MR_deleteEntity];
                                   }];
 }
 

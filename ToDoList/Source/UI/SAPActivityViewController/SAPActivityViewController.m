@@ -21,6 +21,8 @@
 
 #import "UITableView+SAPExtensions.h"
 
+#import "SAPModelView.h"
+
 #import "SAPViewControllerMacro.h"
 
 static NSInteger const kSAPRowsCount            = 3;
@@ -30,9 +32,11 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 
 @interface SAPActivityViewController ()
 @property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, strong)   NSArray     *cells;
 
 - (void)onCancelButton;
-- (Class)cellClassForRow:(NSInteger)row;
+- (void)onSaveButton;
+
 - (void)customizeNavigationBar;
 
 @end
@@ -40,6 +44,8 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 @implementation SAPActivityViewController
 
 @dynamic tableView;
+
+@synthesize model = _model;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -56,6 +62,30 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 
 - (UITableView *)tableView {
     return self.mainView.tableView;
+}
+
+- (NSArray *)cells {
+    if (_cells) {
+        return _cells;
+    }
+    
+    UITableView *tableView = self.tableView;
+    if (!tableView) {
+        return nil;
+    }
+    
+    SAPTypeCell *typeCell = [tableView cellWithClass:[SAPTypeCell class]];
+    SAPNoteCell *noteCell = [tableView cellWithClass:[SAPNoteCell class]];
+    SAPDateCell *dateCell = [tableView cellWithClass:[SAPDateCell class]];
+    
+    _cells = @[typeCell, noteCell, dateCell];
+    SAPActivity *model = self.model;
+    
+    for (id<SAPModelView> cell in _cells) {
+        cell.model = model;
+    }
+    
+    return _cells;
 }
 
 #pragma mark-
@@ -75,6 +105,14 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onSaveButton {
+    for (id cell in self.cells) {
+        [cell fillModelFromView];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -83,11 +121,9 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Class cellClass = [self cellClassForRow:indexPath.row];
-    SAPTableViewCell<SAPModelView> *cell = [tableView cellWithClass:cellClass];
-    cell.model = self.model;
+    NSInteger row = indexPath.row;
     
-    return cell;
+    return self.cells[row];
 }
 
 #pragma mark -
@@ -96,7 +132,7 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 - (void)customizeNavigationBar {
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                 target:self
-                                                                                action:nil];
+                                                                                action:@selector(onSaveButton)];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                 target:self
@@ -104,26 +140,6 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
     
     self.navigationItem.rightBarButtonItem = saveButton;
     self.navigationItem.leftBarButtonItem = cancelButton;
-}
-
-- (Class)cellClassForRow:(NSInteger)row {
-    switch (row) {
-        case 0:
-            return [SAPTypeCell class];
-            break;
-            
-        case 1:
-            return [SAPNoteCell class];
-            break;
-            
-        case 2:
-            return [SAPDateCell class];
-            break;
-            
-        default:
-            return Nil;
-            break;
-    }
 }
 
 @end

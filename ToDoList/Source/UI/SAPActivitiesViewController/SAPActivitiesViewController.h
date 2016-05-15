@@ -6,8 +6,8 @@
 //  Copyright © 2016 Andrey. All rights reserved.
 //
 
-#import "SAPViewController.h"
+#import "SAPMagicalRecordViewController.h"
 
-@interface SAPActivitiesViewController : SAPViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SAPActivitiesViewController : SAPMagicalRecordViewController
 
 @end
