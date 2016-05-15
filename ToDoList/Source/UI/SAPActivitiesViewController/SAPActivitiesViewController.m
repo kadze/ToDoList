@@ -14,10 +14,8 @@
 #import "SAPActivities.h"
 #import "SAPActivityCell.h"
 #import "SAPActivitiesview.h"
-#import "SAPTableViewCell.h"
 #import "SAPActivityViewController.h"
 
-#import "UITableView+SAPExtensions.h"
 #import "UIAlertController+SAPExtensions.h"
 
 #import "SAPModelView.h"
@@ -25,23 +23,21 @@
 #import "SAPViewControllerMacro.h"
 
 static CGFloat    const kSAPEstimatedRowHeight      = 66.0;
-static NSString * const kSAPActualIndex             = @"0";
 static NSString * const kSAPActualHeader            = @"Actual";
-static NSString * const kSAPOutdatedIndex           = @"1";
 static NSString * const kSAPOutdatedHeader          = @"Outdated";
-static NSString * const kSAPCompletedIndex          = @"2";
 static NSString * const kSAPCompletedHeader         = @"Completed";
 static NSString * const kSAPEditActionTitle         = @"Edit";
 static NSString * const kSAPCompleteActionTitle     = @"Complete";
 static NSString * const kSAPDeleteActionTitle       = @"Delete";
 static NSString * const kSAPAllertControllerTitle   = @"Select action";
+static NSString * const kSAPSectionNameKeyPath      = @"status";
+static NSString * const kSAPSortDescriptorKey       = @"status";
 
 SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView, mainView);
 
 @interface SAPActivitiesViewController ()
 @property (nonatomic, readonly) UITableView *tableView;
 
-//- (Class)cellClass;
 - (void)customizeRightBarButton;
 - (void)onAddTask;
 - (void)showActivityViewControllerWithModel:(SAPActivity *)model;
@@ -107,7 +103,6 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
             default:
                 return [sectionInfo name];
         }
-        
     } else
         return nil;
 }
@@ -129,26 +124,6 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-//#pragma mark -
-//#pragma mark NSFetchedResultsControllerDelegate
-//
-//- (void)    controller:(NSFetchedResultsController *)controller
-//       didChangeObject:(id)anObject
-//           atIndexPath:(NSIndexPath *)indexPath
-//         forChangeType:(NSFetchedResultsChangeType)type
-//          newIndexPath:(NSIndexPath *)newIndexPath
-//{
-//    [super controller:controller
-//      didChangeObject:anObject
-//          atIndexPath:indexPath
-//        forChangeType:type
-//         newIndexPath:newIndexPath];
-//    
-//    if (NSFetchedResultsChangeMove == type) {
-//        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-//    }
-//}
-
 #pragma mark -
 #pragma mark Public
 
@@ -169,16 +144,15 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (NSString *)sectionNameKeyPath {
-    return @"status";
+    return kSAPSectionNameKeyPath;
 }
 
 - (NSArray *)sortDescriptors {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"status"
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kSAPSortDescriptorKey
                                                                    ascending:YES];
 
     return @[sortDescriptor];
 }
-
 
 #pragma mark -
 #pragma mark Private
@@ -210,7 +184,10 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return [UIAlertAction actionWithTitle:kSAPCompleteActionTitle
                                     style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action) {
-                                      activity.status = kSAPActivityStatusCompleted;
+                                      [MagicalRecord saveWithBlock:^(NSManagedObjectContext * localContext) {
+                                          SAPActivity *localModel = [activity MR_inContext:localContext];
+                                          localModel.status = kSAPActivityStatusCompleted;
+                                      }];
                                   }];
 }
 

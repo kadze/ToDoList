@@ -31,7 +31,7 @@
 
 - (void)awakeFromFetch {
     NSDate *currentDate = [NSDate date];
-    if (self.status != 1 && [currentDate compare:self.date] == NSOrderedDescending) {
+    if (self.status != 2 && [currentDate compare:self.date] == NSOrderedDescending) {
         self.status = 1;
     }
 }
