@@ -10,8 +10,11 @@
 
 #import "SAPModelView.h"
 
+@class SAPImageView;
+
 @interface SAPActivityCell : SAPTableViewCell <SAPModelView>
-@property (nonatomic, strong) IBOutlet UILabel *noteLabel;
-@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel      *noteLabel;
+@property (nonatomic, strong) IBOutlet UILabel      *dateLabel;
+@property (nonatomic, strong) IBOutlet SAPImageView *typeView;
 
 @end

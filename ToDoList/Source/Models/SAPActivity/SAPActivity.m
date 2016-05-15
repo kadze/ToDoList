@@ -8,6 +8,8 @@
 
 #import "SAPActivity.h"
 
+#import "SAPBundleImageModel.h"
+
 #import "NSManagedObject+SAPExtensions.h"
 
 @implementation SAPActivity
@@ -16,6 +18,8 @@
 @dynamic status;
 @dynamic note;
 @dynamic date;
+
+@dynamic imageModel;
 
 #pragma mark -
 #pragma mark Accessors
@@ -33,6 +37,30 @@
     if (self.status != 2 && [currentDate compare:self.date] == NSOrderedDescending) {
         self.status = 1;
     }
+}
+
+- (SAPImageModel *)imageModel {
+    NSString *filename = nil;
+    SAPActivityType type = self.type;
+    
+    switch (type) {
+        case kSAPActivityTypeCall:
+            filename = @"call";
+            break;
+        
+        case kSAPActivityTypeTask:
+            filename = @"task";
+            break;
+            
+        case kSAPActivityTypeMeeting:
+            filename = @"meeting";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return [SAPBundleImageModel imageWithUrl:[NSURL URLWithString:filename]];
 }
 
 @end

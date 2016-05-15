@@ -8,7 +8,7 @@
 #import <UIKit/UILabel.h>
 
 #import "SAPActivityCell.h"
-
+#import "SAPImageView.h"
 #import "SAPActivity.h"
 
 @implementation SAPActivityCell
@@ -32,6 +32,7 @@
 - (void)fillWithModel:(SAPActivity *)model {
     self.noteLabel.text = model.note;
     self.dateLabel.text = model.date.description;
+    self.typeView.imageModel = model.imageModel;
 }
 
 @end
