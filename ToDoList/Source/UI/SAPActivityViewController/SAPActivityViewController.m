@@ -9,6 +9,7 @@
 #import <UIKit/UINavigationController.h>
 #import <UIKit/UINavigationBar.h>
 #import <UIKit/UIToolbar.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 #import "SAPActivityViewController.h"
 
@@ -24,6 +25,7 @@
 #import "SAPModelView.h"
 
 #import "SAPViewControllerMacro.h"
+#import "SAPOwnershipMacro.h"
 
 static NSInteger const kSAPRowsCount            = 3;
 static CGFloat   const kSAPEstimatedRowHeight   = 44.0;
@@ -106,11 +108,20 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 }
 
 - (void)onSaveButton {
+    SAPActivity *model = self.model;
     for (id cell in self.cells) {
-        [cell fillModelFromView];
+        [cell fillModel:model];
     }
     
+    NSDate *currentDate = [NSDate date];
+    if (model.status != 2 && [currentDate compare:model.date] == NSOrderedDescending) {
+        model.status = 1;
+    }
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 #pragma mark -

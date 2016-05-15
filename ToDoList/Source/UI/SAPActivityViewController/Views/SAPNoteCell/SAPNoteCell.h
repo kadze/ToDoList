@@ -14,6 +14,6 @@
 @interface SAPNoteCell : SAPTableViewCell <SAPModelView>
 @property (nonatomic, strong) IBOutlet UITextView *textView;
 
-- (void)fillModelFromView;
+- (void)fillModel:(id)model;
 
 @end

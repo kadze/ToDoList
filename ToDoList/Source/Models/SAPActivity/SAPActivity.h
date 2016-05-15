@@ -19,11 +19,16 @@ typedef NS_ENUM(uint16_t, SAPActivityType) {
     kSAPActivityTypeTask
 };
 
+typedef NS_ENUM(uint16_t, SAPActivityStatus) {
+    kSAPActivityStatusActual,
+    kSAPActivityStatusOutdated,
+    kSAPActivityStatusCompleted
+};
+
 @interface SAPActivity : SAPManagedObject<SAPModelProtocol>
-@property (nonatomic, assign)   SAPActivityType type;
-@property (nonatomic, strong)   NSNumber        *completed;
-@property (nonatomic, strong)   NSString        *note;
-@property (nonatomic, strong)   NSDate          *date;
-@property (nonatomic, readonly) NSString        *section;
+@property (nonatomic, assign)   SAPActivityType     type;
+@property (nonatomic, assign)   SAPActivityStatus   status;
+@property (nonatomic, strong)   NSString            *note;
+@property (nonatomic, strong)   NSDate              *date;
 
 @end

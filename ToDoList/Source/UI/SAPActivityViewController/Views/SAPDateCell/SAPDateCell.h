@@ -14,6 +14,6 @@
 @interface SAPDateCell : SAPTableViewCell <SAPModelView>
 @property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 
-- (void)fillModelFromView;
+- (void)fillModel:(id)model;
 
 @end

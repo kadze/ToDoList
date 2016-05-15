@@ -25,9 +25,12 @@
 #import "SAPViewControllerMacro.h"
 
 static CGFloat    const kSAPEstimatedRowHeight      = 66.0;
-static NSString * const kSAPSection1Header          = @"Outdated";
-static NSString * const kSAPSection2Header          = @"Actual";
-static NSString * const kSAPSection3Header          = @"Completed";
+static NSString * const kSAPActualIndex             = @"0";
+static NSString * const kSAPActualHeader            = @"Actual";
+static NSString * const kSAPOutdatedIndex           = @"1";
+static NSString * const kSAPOutdatedHeader          = @"Outdated";
+static NSString * const kSAPCompletedIndex          = @"2";
+static NSString * const kSAPCompletedHeader         = @"Completed";
 static NSString * const kSAPEditActionTitle         = @"Edit";
 static NSString * const kSAPCompleteActionTitle     = @"Complete";
 static NSString * const kSAPDeleteActionTitle       = @"Delete";
@@ -81,6 +84,35 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 #pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSFetchedResultsController *controller = self.fetchedResultsController;
+    if ([[controller sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[controller sections] objectAtIndex:section];
+        int index = [[sectionInfo name] intValue];
+        switch (index) {
+            case 0:
+                return kSAPActualHeader;
+                break;
+            
+            case 1:
+                return kSAPOutdatedHeader;
+                break;
+            
+            case 2:
+                return kSAPCompletedHeader;
+                break;
+                
+            default:
+                return [sectionInfo name];
+        }
+        
+    } else
+        return nil;
+}
+
+#pragma mark -
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,6 +128,26 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     
     [self presentViewController:controller animated:YES completion:nil];
 }
+
+//#pragma mark -
+//#pragma mark NSFetchedResultsControllerDelegate
+//
+//- (void)    controller:(NSFetchedResultsController *)controller
+//       didChangeObject:(id)anObject
+//           atIndexPath:(NSIndexPath *)indexPath
+//         forChangeType:(NSFetchedResultsChangeType)type
+//          newIndexPath:(NSIndexPath *)newIndexPath
+//{
+//    [super controller:controller
+//      didChangeObject:anObject
+//          atIndexPath:indexPath
+//        forChangeType:type
+//         newIndexPath:newIndexPath];
+//    
+//    if (NSFetchedResultsChangeMove == type) {
+//        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+//    }
+//}
 
 #pragma mark -
 #pragma mark Public
@@ -117,11 +169,11 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 }
 
 - (NSString *)sectionNameKeyPath {
-    return @"section";
+    return @"status";
 }
 
 - (NSArray *)sortDescriptors {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed"
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"status"
                                                                    ascending:YES];
 
     return @[sortDescriptor];
@@ -158,7 +210,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return [UIAlertAction actionWithTitle:kSAPCompleteActionTitle
                                     style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action) {
-                                      activity.completed = @(1);
+                                      activity.status = kSAPActivityStatusCompleted;
                                   }];
 }
 
@@ -166,7 +218,10 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
     return [UIAlertAction actionWithTitle:kSAPDeleteActionTitle
                                     style:UIAlertActionStyleDestructive
                                   handler:^(UIAlertAction *action) {
-                                      [activity MR_deleteEntity];
+                                      [MagicalRecord saveWithBlock:^(NSManagedObjectContext * localContext) {
+                                          NSManagedObject *localModel = [activity MR_inContext:localContext];
+                                          [localModel MR_deleteEntity];
+                                      }];
                                   }];
 }
 

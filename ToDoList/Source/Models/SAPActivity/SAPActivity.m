@@ -10,34 +10,30 @@
 
 #import "NSManagedObject+SAPExtensions.h"
 
-static NSString * const kSAPSectionOutdated     = @"Outdated";
-static NSString * const kSAPSectionActual       = @"Actual";
-static NSString * const kSAPSectionCompleted    = @"Completed";
-
 @implementation SAPActivity
 
 //#warning temporaty comment for testing
 @dynamic type;
-@dynamic completed;
+@dynamic status;
 @dynamic note;
 @dynamic date;
-@dynamic section;
+
+#pragma mark -
+#pragma mark Accessors
 
 - (void)setType:(SAPActivityType)type {
     [self setCustomValue:@(type) forKey:NSStringFromSelector(@selector(type))];
 }
 
-- (NSString *)section {
-    if (self.completed) {
-        return kSAPSectionCompleted;
-    }
-    
+- (void)setStatus:(SAPActivityStatus)status {
+    [self setCustomValue:@(status) forKey:NSStringFromSelector(@selector(status))];
+}
+
+- (void)awakeFromFetch {
     NSDate *currentDate = [NSDate date];
-    if ([currentDate compare:self.date] == NSOrderedDescending) {
-        return kSAPSectionOutdated;
+    if (self.status != 1 && [currentDate compare:self.date] == NSOrderedDescending) {
+        self.status = 1;
     }
-    
-    return kSAPSectionActual;
 }
 
 @end

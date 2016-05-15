@@ -38,8 +38,7 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)fillModelFromView {
-    SAPActivity *model = self.model;
+- (void)fillModel:(SAPActivity *)model {
     model.note = self.textView.text;
 }
 
