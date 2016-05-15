@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+@class SAPBundleImageModel;
+
 typedef NS_ENUM(uint16_t, SAPActivityType) {
     kSAPActivityTypeCall,
     kSAPActivityTypeMeeting,
@@ -25,5 +27,7 @@ typedef NS_ENUM(uint16_t, SAPActivityStatus) {
 @property (nonatomic, assign)   SAPActivityStatus   status;
 @property (nonatomic, strong)   NSString            *note;
 @property (nonatomic, strong)   NSDate              *date;
+
+@property (nonatomic, readonly) SAPBundleImageModel       *imageModel;
 
 @end

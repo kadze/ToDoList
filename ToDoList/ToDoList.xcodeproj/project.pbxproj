@@ -68,6 +68,10 @@
 		550A6B251CE50AE2001D298C /* SAPActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B231CE50AE2001D298C /* SAPActivityViewController.m */; };
 		550A6B261CE50AE2001D298C /* SAPActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550A6B241CE50AE2001D298C /* SAPActivityViewController.xib */; };
 		550A6B331CE520B4001D298C /* SAPActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A6B321CE520B4001D298C /* SAPActivities.m */; };
+		552F42B71CE91B25005DA758 /* SAPBundleImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F42B61CE91B25005DA758 /* SAPBundleImageModel.m */; };
+		552F42BC1CE9272A005DA758 /* call in Resources */ = {isa = PBXBuildFile; fileRef = 552F42B91CE9272A005DA758 /* call */; };
+		552F42BD1CE9272A005DA758 /* meeting in Resources */ = {isa = PBXBuildFile; fileRef = 552F42BA1CE9272A005DA758 /* meeting */; };
+		552F42BE1CE9272A005DA758 /* task in Resources */ = {isa = PBXBuildFile; fileRef = 552F42BB1CE9272A005DA758 /* task */; };
 		55D45D6B1CE7429700787BD3 /* SAPMagicalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D45D6A1CE7429700787BD3 /* SAPMagicalRecordViewController.m */; };
 		55D45D6D1CE7977300787BD3 /* SAPDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D45D6C1CE7977300787BD3 /* SAPDateCell.xib */; };
 		55EA685F1CE6687500642CC9 /* UIAlertController+SAPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EA685E1CE6687500642CC9 /* UIAlertController+SAPExtensions.m */; };
@@ -215,6 +219,11 @@
 		550A6B241CE50AE2001D298C /* SAPActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAPActivityViewController.xib; sourceTree = "<group>"; };
 		550A6B311CE520B4001D298C /* SAPActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPActivities.h; sourceTree = "<group>"; };
 		550A6B321CE520B4001D298C /* SAPActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPActivities.m; sourceTree = "<group>"; };
+		552F42B51CE91B25005DA758 /* SAPBundleImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPBundleImageModel.h; sourceTree = "<group>"; };
+		552F42B61CE91B25005DA758 /* SAPBundleImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPBundleImageModel.m; sourceTree = "<group>"; };
+		552F42B91CE9272A005DA758 /* call */ = {isa = PBXFileReference; lastKnownFileType = file; path = call; sourceTree = "<group>"; };
+		552F42BA1CE9272A005DA758 /* meeting */ = {isa = PBXFileReference; lastKnownFileType = file; path = meeting; sourceTree = "<group>"; };
+		552F42BB1CE9272A005DA758 /* task */ = {isa = PBXFileReference; lastKnownFileType = file; path = task; sourceTree = "<group>"; };
 		55C61AF6D5400EC5D2976C0A /* libPods-ToDoList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDoList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D45D691CE7429700787BD3 /* SAPMagicalRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPMagicalRecordViewController.h; sourceTree = "<group>"; };
 		55D45D6A1CE7429700787BD3 /* SAPMagicalRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPMagicalRecordViewController.m; sourceTree = "<group>"; };
@@ -296,6 +305,7 @@
 		550A6A1E1CE50236001D298C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				552F42B81CE9217C005DA758 /* Images */,
 				550A6A1F1CE50236001D298C /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -753,6 +763,7 @@
 			children = (
 				550A6A9B1CE503A1001D298C /* SAPImageModel.h */,
 				550A6A9C1CE503A1001D298C /* SAPImageModel.m */,
+				552F42B41CE91AF1005DA758 /* SAPBundleImageModel */,
 			);
 			path = SAPImageModel;
 			sourceTree = "<group>";
@@ -990,6 +1001,25 @@
 			path = SAPActivities;
 			sourceTree = "<group>";
 		};
+		552F42B41CE91AF1005DA758 /* SAPBundleImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				552F42B51CE91B25005DA758 /* SAPBundleImageModel.h */,
+				552F42B61CE91B25005DA758 /* SAPBundleImageModel.m */,
+			);
+			path = SAPBundleImageModel;
+			sourceTree = "<group>";
+		};
+		552F42B81CE9217C005DA758 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				552F42B91CE9272A005DA758 /* call */,
+				552F42BA1CE9272A005DA758 /* meeting */,
+				552F42BB1CE9272A005DA758 /* task */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		55D45D681CE7423600787BD3 /* SAPMagicalRecordViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,11 +1195,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552F42BD1CE9272A005DA758 /* meeting in Resources */,
+				552F42BE1CE9272A005DA758 /* task in Resources */,
 				550A6A201CE50236001D298C /* Assets.xcassets in Resources */,
 				550A6B091CE503A2001D298C /* SAPActivityIndicator.xib in Resources */,
 				550A6B261CE50AE2001D298C /* SAPActivityViewController.xib in Resources */,
 				55EA68901CE6925A00642CC9 /* SAPNoteCell.xib in Resources */,
 				55F19C381CE5B1D400F54D2D /* SAPActivityCell.xib in Resources */,
+				552F42BC1CE9272A005DA758 /* call in Resources */,
 				55EA68921CE6925A00642CC9 /* SAPTypeCell.xib in Resources */,
 				55D45D6D1CE7977300787BD3 /* SAPDateCell.xib in Resources */,
 				550A6B1B1CE50895001D298C /* SAPActivitiesViewController.xib in Resources */,
@@ -1267,6 +1300,7 @@
 				550A6AEC1CE503A2001D298C /* NSURL+SAPExtensions.m in Sources */,
 				550A6AF81CE503A2001D298C /* SAPCollectionChangeIndexModel+UITableView.m in Sources */,
 				550A6AE81CE503A2001D298C /* NSObject+SAPExtensions.m in Sources */,
+				552F42B71CE91B25005DA758 /* SAPBundleImageModel.m in Sources */,
 				550A6B1A1CE50895001D298C /* SAPActivitiesViewController.m in Sources */,
 				550A6B0A1CE503A2001D298C /* SAPImageView.m in Sources */,
 				550A6AE51CE503A2001D298C /* NSIndexPath+SAPExtensions.m in Sources */,
