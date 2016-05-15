@@ -15,8 +15,6 @@
 
 #import "SAPModelView.h"
 
-#import "SAPActivity.h"
-
 static NSString * const kSAPCacheFormatString = @"%@Cache";
 
 @interface SAPMagicalRecordViewController ()
@@ -58,12 +56,6 @@ static NSString * const kSAPCacheFormatString = @"%@Cache";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
-    NSLog(@"%d", [SAPActivity MR_findAll].count);
-    NSLog(@"%d", [SAPActivity MR_findAll].count);
-    NSLog(@"%d", [SAPActivity MR_findAll].count);
-    NSLog(@"%d", [SAPActivity MR_findAll].count);
     
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
     
