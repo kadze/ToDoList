@@ -12,7 +12,6 @@
 
 @implementation SAPActivity
 
-//#warning temporaty comment for testing
 @dynamic type;
 @dynamic status;
 @dynamic note;

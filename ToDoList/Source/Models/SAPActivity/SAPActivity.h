@@ -8,11 +8,6 @@
 
 #import <CoreData/CoreData.h>
 
-#import "SAPModel.h"
-#import "SAPManagedObject.h"
-
-#import "SAPModelProtocol.h"
-
 typedef NS_ENUM(uint16_t, SAPActivityType) {
     kSAPActivityTypeCall,
     kSAPActivityTypeMeeting,
@@ -25,7 +20,7 @@ typedef NS_ENUM(uint16_t, SAPActivityStatus) {
     kSAPActivityStatusCompleted
 };
 
-@interface SAPActivity : SAPManagedObject<SAPModelProtocol>
+@interface SAPActivity : NSManagedObject
 @property (nonatomic, assign)   SAPActivityType     type;
 @property (nonatomic, assign)   SAPActivityStatus   status;
 @property (nonatomic, strong)   NSString            *note;
