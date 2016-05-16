@@ -12,6 +12,10 @@
 
 #import "NSManagedObject+SAPExtensions.h"
 
+static NSString * const kSAPCallImageFilename    = @"call";
+static NSString * const kSAPMeetingImageFilename = @"meeting";
+static NSString * const kSAPTaskImageFilename    = @"task";
+
 @implementation SAPActivity
 
 @dynamic type;
@@ -39,21 +43,21 @@
     }
 }
 
-- (SAPImageModel *)imageModel {
+- (SAPBundleImageModel *)imageModel {
     NSString *filename = nil;
     SAPActivityType type = self.type;
     
     switch (type) {
         case kSAPActivityTypeCall:
-            filename = @"call";
+            filename = kSAPCallImageFilename;
             break;
         
         case kSAPActivityTypeTask:
-            filename = @"task";
+            filename = kSAPTaskImageFilename;
             break;
             
         case kSAPActivityTypeMeeting:
-            filename = @"meeting";
+            filename = kSAPMeetingImageFilename;
             break;
             
         default:
