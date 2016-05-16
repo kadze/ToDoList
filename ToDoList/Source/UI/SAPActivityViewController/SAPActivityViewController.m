@@ -104,6 +104,7 @@ SAPViewControllerBaseViewProperty(SAPActivityViewController, SAPActivityView, ma
 #pragma mark Interface Handling
 
 - (void)onCancelButton {
+    [self.model MR_deleteEntity];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
