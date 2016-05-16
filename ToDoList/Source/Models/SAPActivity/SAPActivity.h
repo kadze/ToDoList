@@ -28,6 +28,6 @@ typedef NS_ENUM(uint16_t, SAPActivityStatus) {
 @property (nonatomic, strong)   NSString            *note;
 @property (nonatomic, strong)   NSDate              *date;
 
-@property (nonatomic, readonly) SAPBundleImageModel       *imageModel;
+@property (nonatomic, readonly) id imageModel;
 
 @end
