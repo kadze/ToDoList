@@ -26,6 +26,7 @@ static CGFloat    const kSAPEstimatedRowHeight      = 66.0;
 static NSString * const kSAPActualHeader            = @"Actual";
 static NSString * const kSAPOutdatedHeader          = @"Outdated";
 static NSString * const kSAPCompletedHeader         = @"Completed";
+static NSString * const kSAPCancelActionTitle       = @"Cancel";
 static NSString * const kSAPEditActionTitle         = @"Edit";
 static NSString * const kSAPCompleteActionTitle     = @"Complete";
 static NSString * const kSAPDeleteActionTitle       = @"Delete";
@@ -112,16 +113,7 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SAPActivity *activity = [self.fetchedResultsController objectAtIndexPath:indexPath];
- 
-    UIAlertAction *editAction = [self editActionWithActivity:activity];
-    UIAlertAction *completeAction = [self completeActionWithActivity:activity];
-    UIAlertAction *deleteAction = [self deleteActionWithActivity:activity];
-    
-    UIAlertController *controller = [UIAlertController actionSheetWithTitle:kSAPAllertControllerTitle
-                                                                    message:nil
-                                                                    actions:@[editAction, completeAction, deleteAction]];
-    
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:[self alertControllerWithActivity:activity] animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -200,6 +192,24 @@ SAPViewControllerBaseViewProperty(SAPActivitiesViewController, SAPActivitiesView
                                           [localModel MR_deleteEntity];
                                       }];
                                   }];
+}
+
+- (UIAlertAction *)cancelAction {
+    return [UIAlertAction actionWithTitle:kSAPCancelActionTitle
+                                    style:UIAlertActionStyleCancel
+                                  handler:nil
+            ];
+}
+
+- (UIAlertController*)alertControllerWithActivity:(SAPActivity *)activity {
+    NSArray *actions = @[[self cancelAction],
+                         [self editActionWithActivity:activity],
+                         [self completeActionWithActivity:activity],
+                         [self deleteActionWithActivity:activity]];
+    
+    return [UIAlertController actionSheetWithTitle:kSAPAllertControllerTitle
+                                                                    message:nil
+                                                                    actions:actions];
 }
 
 @end
